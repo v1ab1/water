@@ -1,5 +1,6 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
+
 def parser():
     driver = webdriver.Firefox()
     driver.get("https://vlasovkluch.ru/cat/product/item_6.html")
