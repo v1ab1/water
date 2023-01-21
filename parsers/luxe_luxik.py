@@ -20,4 +20,5 @@ def parser():
     driver.find_element(By.XPATH, '//*[@id="content"]/div/div[1]/div[1]/div/div[1]/div[3]/div[2]/div[2]/button[1]').click()
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     box = int(soup.find('div', {'class': 'item-pack__total'}).find_all('span')[1].text[0:3])
+    driver.close()
     return [single, double, box]

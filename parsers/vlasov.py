@@ -8,4 +8,7 @@ def parser():
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     found = soup.find(class_='price-inf-info-card-product')
     driver.close()
-    return(found.text.split()[0])
+    arr = [int(found.text.split()[0]), int(found.text.split()[0]), '-']
+    return(arr)
+
+print(parser())

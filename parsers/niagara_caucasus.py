@@ -7,10 +7,8 @@ def parser():
     driver = webdriver.Firefox()
     driver.get('https://niagara74.ru/')
     soup = BeautifulSoup(driver.page_source, 'html.parser')
-    driver.find_element(By.XPATH, '//*[@id="main"]/div/div[1]/div/div/div[1]/div[2]/ul/li[3]/a').click()
-    time.sleep(1)
-    driver.find_element(By.XPATH, '//*[@id="bx_3966226736_401_c80764dfaf26ca80162484593ec7c29b_quant_up"]').click()
-    driver.find_element(By.XPATH, '//*[@id="bx_3966226736_401_c80764dfaf26ca80162484593ec7c29b_quant_up"]').click()
+    driver.find_element(By.XPATH, '/html/body/div[2]/div/div[1]/div/div/div[1]/div[2]/div[1]/div[2]/div[2]').click()
+    driver.find_element(By.XPATH, '/html/body/div[2]/div/div[1]/div/div/div[1]/div[2]/div[1]/div[2]/div[2]').click()
     time.sleep(1)
     driver.find_element(By.XPATH, '/html/body/div[2]/div/div[1]/div/div/div[2]/form/div[2]/div[1]/div[1]/div/div[4]').click()
     time.sleep(1)
@@ -23,3 +21,5 @@ def parser():
     box = int(soup.find('div', {'class': 'reverse-packing'}).find('div', {'class': 'field'}).find('div', {'class': 'price-col'}).find('div', {'class': 'price'}).find('span', {'class': 'value'}).text.strip()[0:3])
     driver.close()
     return [single, double, box]
+
+print(parser())
