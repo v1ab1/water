@@ -12,5 +12,3 @@ def parser():
     box = int(soup.find('div', {'id': 'f75f5656e56542c78645cf2ff4fe6b05'}).find('div').find('b').text[0:3].strip())
     driver.close()
     return [single, double, box]
-
-print(parser())

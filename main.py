@@ -1,8 +1,8 @@
 import logging
-
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import InputFile
 
+from excel_handler import excel_handle
 
 API_TOKEN = ''
 
@@ -21,6 +21,7 @@ async def send_welcome(message: types.Message):
 async def echo(message: types.Message):
     await message.answer('Сейчас подготовим для тебя актуальный анализ рынка!')
     await message.answer('Подождите...')
+    await excel_handle()
     await bot.send_document(message.from_user.id, open('analysis.xlsx', 'rb'))
     await message.answer('Готово! :)')
 

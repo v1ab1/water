@@ -16,3 +16,4 @@ def parser():
     box = int(soup.find('div', {'class': 'col-xs-12 col-sm-6 col-md-3 empty19'}).find('div', {'class': 'bwsb_price'}).find('span').text.strip())
     driver.close()
     return [single, double, box]
+

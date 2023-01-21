@@ -10,5 +10,3 @@ def parser():
     driver.close()
     arr = [int(found.text.split()[0]), int(found.text.split()[0]), '-']
     return(arr)
-
-print(parser())
