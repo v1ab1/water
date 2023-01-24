@@ -4,7 +4,7 @@ from aiogram.types import InputFile
 
 from excel_handler import excel_handle
 
-API_TOKEN = ''
+API_TOKEN = '5825266376:AAH6Hn7hNSNloHRPfbk8KY2nR5NDI4_GPCQ'
 
 logging.basicConfig(level=logging.INFO)
 

@@ -1,21 +1,21 @@
 from datetime import datetime
 import openpyxl
-# from parsers.aquamobil_aqua import parser as aquamobil_aqua_def
-# from parsers.aquamobil_arhiz import parser as aquamobil_arhiz_def
-# from parsers.aquamobil_artenza import parser as aquamobil_artenza_def
-# from parsers.aquamobil_kukuzar import parser as aquamobil_kukuzar_def
-# from parsers.aquamobil_sosnovskaya import parser as aquamobil_sosnovskaya_def
-# from parsers.chebarkul import parser as chebarkul_def
-# from parsers.crystal import parser as crystal_def
-# from parsers.gorny import parser as gorny_def
-# from parsers.lubima import parser as lubima_def
-# from parsers.luxe_luxik import parser as luxe_luxik_def
-# from parsers.luxe import parser as luxe_def
-# from parsers.niagara_caucasus import parser as niagara_caucasus_def
-# from parsers.niagara_premium import parser as niagara_premium_def
-# from parsers.niagara import parser as niagara_def
-# from parsers.vlasov import parser as vlasov_def
-# from parsers.zhivaya import parser as zhivaya_def
+from parsers.aquamobil_aqua import parser as aquamobil_aqua_def
+from parsers.aquamobil_arhiz import parser as aquamobil_arhiz_def
+from parsers.aquamobil_artenza import parser as aquamobil_artenza_def
+from parsers.aquamobil_kukuzar import parser as aquamobil_kukuzar_def
+from parsers.aquamobil_sosnovskaya import parser as aquamobil_sosnovskaya_def
+from parsers.chebarkul import parser as chebarkul_def
+from parsers.crystal import parser as crystal_def
+from parsers.gorny import parser as gorny_def
+from parsers.lubima import parser as lubima_def
+from parsers.luxe_luxik import parser as luxe_luxik_def
+from parsers.luxe import parser as luxe_def
+from parsers.niagara_caucasus import parser as niagara_caucasus_def
+from parsers.niagara_premium import parser as niagara_premium_def
+from parsers.niagara import parser as niagara_def
+from parsers.vlasov import parser as vlasov_def
+from parsers.zhivaya import parser as zhivaya_def
 
 async def excel_handle():
     wb = openpyxl.load_workbook('analysis.xlsx')
