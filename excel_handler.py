@@ -9,6 +9,7 @@ def excel_handle():
     date = f'{datetime.now().day}.{month}.{year}'
     if date in wb == False:
         return
-    
+    wb.create_sheet(date)
+    wb.save('analysis.xlsx')
 
 excel_handle()
