@@ -5,7 +5,7 @@ import time
 
 def parser():
     driver = webdriver.Firefox()
-    driver.get("https://l-w.ru/catalog/voda/voda_19l/")
+    driver.get("https://l-w.ru/catalog/voda/lyuksik_19l/")
     driver.find_element(By.CLASS_NAME, 'fancybox-close-small').click()
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     single = int(soup.find('div', {'class': 'price--current'}).text[0:3])
@@ -17,7 +17,8 @@ def parser():
     time.sleep(1)
     driver.find_element(By.CLASS_NAME, 'head-cart').click()
     time.sleep(2)
-    driver.find_element(By.XPATH, '//*[@id="content"]/div/div[1]/div[1]/div/div[1]/div[3]/div[2]/div[2]/button[1]').click()
+    driver.find_element(By.XPATH, '/html/body/div[1]/main/div/div[1]/div[1]/div/div[1]/div[3]/div[2]/div[2]/button[1]').click()
+    time.sleep(1)
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     box = int(soup.find('div', {'class': 'item-pack__total'}).find_all('span')[1].text[0:3])
     driver.close()

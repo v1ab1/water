@@ -7,4 +7,5 @@ def parser():
     driver.get('https://www.74mv.ru/katalog/gornyj-oazis/вода-питьевая-горный-оазис-негазированная-19,0л-detail')
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     double = int(soup.find('span', {'class': 'PriceunitPrice'}).text.strip()[0:3])
+    driver.close()
     return ['-', double, '-']
