@@ -1,12 +1,14 @@
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import InputFile, InlineKeyboardMarkup, InlineKeyboardButton
+import schedule
+import time
 
 from excel_handler import excel_handle
 from discounts_handler import discounts_handle
 from discounts_sender import discounts_send
 
-API_TOKEN = ''
+API_TOKEN = '5825266376:AAH6Hn7hNSNloHRPfbk8KY2nR5NDI4_GPCQ'
 
 logging.basicConfig(level=logging.INFO)
 
@@ -112,6 +114,17 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         update = await check_update(False)
         await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
+
+def job():
+    update = check_update(False)
+    if (update == "True"):
+        excel_handle()
+
+schedule.every().day.at("01:00").do(job)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
