@@ -5,7 +5,7 @@ import time
 
 def parser():
     driver = webdriver.Firefox()
-    driver.get("https://l-w.ru/catalog/voda/lyuksik_19l/")
+    driver.get("https://l-w.ru/catalog/voda/voda_19l/")
     driver.find_element(By.CLASS_NAME, 'fancybox-close-small').click()
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     single = int(soup.find('div', {'class': 'price--current'}).text[0:3])
