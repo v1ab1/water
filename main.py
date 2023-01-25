@@ -8,7 +8,7 @@ from excel_handler import excel_handle
 from discounts_handler import discounts_handle
 from discounts_sender import discounts_send
 
-API_TOKEN = '5825266376:AAH6Hn7hNSNloHRPfbk8KY2nR5NDI4_GPCQ'
+API_TOKEN = ''
 
 logging.basicConfig(level=logging.INFO)
 
