@@ -255,3 +255,5 @@ async def excel_handle():
     today_sheet.cell(row=6, column=19).value = f"=S3-'{previous_date}'!S3"
 
     wb.save('analysis.xlsx')
+
+    print('LESSS GO')

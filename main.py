@@ -3,6 +3,8 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import InputFile, InlineKeyboardMarkup, InlineKeyboardButton
 
 from excel_handler import excel_handle
+from discounts_handler import discounts_handle
+from discounts_sender import discounts_send
 
 API_TOKEN = ''
 
@@ -86,7 +88,14 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
     elif callback_query.data == 'discounts':
-        # Ваш код для выполнения функции discounts()
+        await callback_query.message.delete()
+        await bot.send_message(callback_query.from_user.id, 'Сейчас покажу тебе актуальные скидки!')
+        await bot.send_message(callback_query.from_user.id, 'Подождите...')
+        await discounts_handle()
+        await discounts_send(bot, callback_query)
+        await bot.send_message(callback_query.from_user.id, 'Готово!...')
+        update = await check_update(False)
+        await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
     elif callback_query.data == 'auto_update':
         await callback_query.message.delete()
@@ -103,17 +112,6 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         update = await check_update(False)
         await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
-
-# async def excel_update():
-#     if update:
-#         await excel_handle()
-
-
-# job = Dispatcher.job(excel_update, interval=86400)
-# scheduler = Dispatcher.scheduler()
-# scheduler.add_job(job)
-# scheduler.start()
-
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
