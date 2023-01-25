@@ -4,7 +4,7 @@ from aiogram.types import InputFile, InlineKeyboardMarkup, InlineKeyboardButton
 
 from excel_handler import excel_handle
 
-API_TOKEN = '
+API_TOKEN = ''
 
 logging.basicConfig(level=logging.INFO)
 
