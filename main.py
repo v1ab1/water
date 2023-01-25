@@ -115,16 +115,18 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
 
-def job():
-    update = check_update(False)
+async def job():
+    update = await check_update(False)
     if (update == "True"):
-        excel_handle()
+        await excel_handle()
 
-schedule.every().day.at("01:00").do(job)
+async def service():
+    schedule.every().day.at("07:00").do(job)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+service()
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
