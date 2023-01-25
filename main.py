@@ -5,6 +5,7 @@ import schedule
 import time
 
 from excel_handler import excel_handle
+from graph_handler import graph_handle
 from discounts_handler import discounts_handle
 from discounts_sender import discounts_send
 
@@ -84,6 +85,7 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         await bot.send_message(callback_query.from_user.id, 'Сейчас подготовим для тебя актуальный анализ рынка!')
         await bot.send_message(callback_query.from_user.id, 'Подождите...')
         await excel_handle()
+        await graph_handle()
         await bot.send_document(callback_query.from_user.id, open('analysis.xlsx', 'rb'))
         await bot.send_message(callback_query.from_user.id, 'Готово! :)')
         update = await check_update(False)
