@@ -1,8 +1,6 @@
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import InputFile, InlineKeyboardMarkup, InlineKeyboardButton
-from aiogram.dispatcher.job import Job
-from aiogram.dispatcher.scheduler import Scheduler
 
 from excel_handler import excel_handle
 
@@ -16,23 +14,34 @@ dp = Dispatcher(bot)
 
 update = False
 
-buttonAnalisys = InlineKeyboardButton("Показать актуальный анализ", callback_data="show_analysis")
-buttonUpdate = InlineKeyboardButton("Включить автообновление", callback_data="enable_auto_update")
-buttonDiscounts = InlineKeyboardButton("Показать скидки", callback_data="show_discounts")
-keyboard = InlineKeyboardMarkup().add(buttonAnalisys, buttonUpdate, buttonDiscounts)
+# buttonAnalisys = InlineKeyboardButton("Показать актуальный анализ", callback_data="show_analysis")
+# buttonUpdate = InlineKeyboardButton("Вкл. автообновление", callback_data="enable_auto_update")
+# buttonDiscounts = InlineKeyboardButton("Показать скидки", callback_data="show_discounts")
+# keyboard = InlineKeyboardMarkup().add(buttonAnalisys, buttonUpdate, buttonDiscounts)
 
-# Send the message with the keyboard
+kb = [
+    [
+        InlineKeyboardButton("Актуальный анализ", callback_data="analysis"),
+    ],
+    [
+        InlineKeyboardButton("Акции", callback_data="discounts"),
+    ],
+    [
+        InlineKeyboardButton("Вкл. автообновление✅", callback_data="auto_update")
+    ]
+]
 
+keyboard = InlineKeyboardMarkup(inline_keyboard=kb)
 
 
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
-    await message.answer("Привет, я бот, который покажет тебя самую актуальную информацию о рынке воды в Челябинске! \nХочешь получить актуальную сводку?")
+    await message.answer("Привет, я бот, который покажет тебя самую актуальную информацию о рынке воды в Челябинске! \nХочешь получить сводку?")
 
 
 @dp.message_handler()
 async def echo(message: types.Message):
-    await message.answer("Выберите вариант!:", reply_markup=keyboard)
+    await message.answer("Выберите вариант!", reply_markup=keyboard)
     # await message.answer('Сейчас подготовим для тебя актуальный анализ рынка!')
     # await message.answer('Подождите...')
     # await excel_handle()
@@ -40,15 +49,15 @@ async def echo(message: types.Message):
     # await message.answer('Готово! :)')
 
 
-async def excel_update():
-    if update:
-        await excel_handle()
+# async def excel_update():
+#     if update:
+#         await excel_handle()
 
 
-job = Job(excel_update, interval=86400)
-scheduler = Scheduler()
-scheduler.add_job(job)
-scheduler.start()
+# job = Dispatcher.job(excel_update, interval=86400)
+# scheduler = Dispatcher.scheduler()
+# scheduler.add_job(job)
+# scheduler.start()
 
 
 if __name__ == '__main__':
