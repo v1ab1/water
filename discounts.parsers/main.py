@@ -1,0 +1,10 @@
+from aquamobil.aquamobil_1 import parser as aquamobil_1
+from aquamobil.aquamobil_2 import parser as aquamobil_2
+from aquamobil.aquamobil_3 import parser as aquamobil_3
+from aquamobil.aquamobil_4 import parser as aquamobil_4
+from chebarkul.chebarkul import parser as chebarkul
+from crystal.crystal import parser as crystal
+from gorny.gorny import parser as gorny
+from luxe.luxe import parser as luxe
+from niagara.niagara import parser as niagara
+from zhivaya.zhivaya import parser as zhivaya
