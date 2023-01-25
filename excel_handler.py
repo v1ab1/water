@@ -33,82 +33,82 @@ async def excel_handle():
     try:
         aquamobil_aqua = aquamobil_aqua_def()
     except:
-        aquamobil_aqua = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        aquamobil_aqua = [f"='{previous_date}'!D2", f"='{previous_date}'!D3", '-']
 
     try:
         aquamobil_arhiz = aquamobil_arhiz_def()
     except:
-        aquamobil_arhiz = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        aquamobil_arhiz = [f"='{previous_date}'!E2", f"='{previous_date}'!E3", '-']
 
     try:
         aquamobil_artenza = aquamobil_artenza_def()
     except:
-        aquamobil_artenza = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        aquamobil_artenza = [f"='{previous_date}'!F2", f"='{previous_date}'!F3", '-']
 
     try:
         aquamobil_kukuzar = aquamobil_kukuzar_def()
     except:
-        aquamobil_kukuzar = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        aquamobil_kukuzar = [f"='{previous_date}'!G2", f"='{previous_date}'!G3", '-']
 
     try:
         aquamobil_sosnovskaya = aquamobil_sosnovskaya_def()
     except:
-        aquamobil_sosnovskaya = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        aquamobil_sosnovskaya = [f"='{previous_date}'!H2", f"='{previous_date}'!H3", '-']
 
     try:
         chebarkul = chebarkul_def()
     except:
-        chebarkul = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        chebarkul = [f"='{previous_date}'!I2", f"='{previous_date}'!I3", f"='{previous_date}'!I8"]
 
     try:
         crystal = crystal_def()
     except:
-        crystal = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        crystal = [f"-", f"='{previous_date}'!J3", f"='{previous_date}'!J8"]
         
     try:
         gorny = gorny_def()
     except:
-        gorny = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        gorny = ["-", f"='{previous_date}'!K3", "-"]
 
     try:
         lubima = lubima_def()
     except:
-        lubima = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        lubima = [f"='{previous_date}'!L2", f"='{previous_date}'!L3", f"='{previous_date}'!L8"]
 
     try:
         luxe_luxik = luxe_luxik_def()
     except:
-        luxe_luxik = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        luxe_luxik = [f"='{previous_date}'!N2", f"='{previous_date}'!N3", f"='{previous_date}'!N8"]
 
     try:
         luxe = luxe_def()
     except:
-        luxe = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        luxe = [f"='{previous_date}'!M2", f"='{previous_date}'!M3", f"='{previous_date}'!M8"]
 
     try:
         niagara_caucasus = niagara_caucasus_def()
     except:
-        niagara_caucasus = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        niagara_caucasus = [f"='{previous_date}'!Q2", f"='{previous_date}'!Q3", f"='{previous_date}'!Q8"]
 
     try:
         niagara_premium = niagara_premium_def()
     except:
-        niagara_premium = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        niagara_premium = [f"='{previous_date}'!P2", f"='{previous_date}'!P3", f"='{previous_date}'!P8"]
 
     try:
         niagara = niagara_def()
     except:
-        niagara = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        niagara = [f"='{previous_date}'!O2", f"='{previous_date}'!O3", f"='{previous_date}'!O8"]
 
     try:
         vlasov = vlasov_def()
     except:
-        vlasov = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        vlasov = [f"='{previous_date}'!R2", f"='{previous_date}'!R3", "-"]
 
     try:
         zhivaya = zhivaya_def()
     except:
-        zhivaya = ['ошибка парсера', 'ошибка парсера', 'ошибка парсера']
+        zhivaya = [f"='{previous_date}'!S2", f"='{previous_date}'!S3", f"='{previous_date}'!S8"]
 
     try:
         today_sheet.cell(row=2, column=4).value = aquamobil_aqua[0]

@@ -14,5 +14,3 @@ from niagara_premium import parser as niagara_premium
 from niagara import parser as niagara
 from vlasov import parser as vlasov
 from zhivaya import parser as zhivaya
-
-print(vlasov())
