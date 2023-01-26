@@ -19,5 +19,6 @@ def parser():
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     double = int(soup.find('div', {'class': 'product-item-detail-price-current'}).text.strip()[0:3])
     single = int(soup.find('div', {'class': 'product-item-detail-price-old'}).text.strip()[0:3])
+    soup = BeautifulSoup(driver.page_source, 'html.parser')
     driver.close()
     return [single, double, box]

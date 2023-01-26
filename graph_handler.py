@@ -2,20 +2,30 @@ import openpyxl
 from datetime import datetime
 
 async def graph_handle():
-    wb = openpyxl.load_workbook('analysis.xlsx')
     month = datetime.now().month
     month = month if len(f'{month}') >= 2 else f'0{month}'
     year = f'{datetime.now().year}'[-2:]
     date = f'{datetime.now().day}.{month}.{year}'
-    if date in wb:
+
+    my_file = open("date_graph.txt", "r")
+    dateTxt = my_file.read()
+    my_file.close()
+    if date == dateTxt:
         return
+    
+    my_file = open("date_graph.txt", "w")
+    my_file.write(f'{date}')
+    my_file.close()
+
     my_file = open("index.txt", "r")
     index = int(my_file.read())
     my_file.close()
     index = index + 1
-    my_file = open("update.txt", "w")
+    my_file = open("index.txt", "w")
     my_file.write(f'{index}')
     my_file.close()
+
+    wb = openpyxl.load_workbook('analysis.xlsx')
     sheet = wb.worksheets[0]
     sheet.cell(row=index, column=1).value = date
     sheet.cell(row=index, column=2).value = f"='{date}'!D3"

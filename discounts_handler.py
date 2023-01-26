@@ -16,12 +16,12 @@ async def discounts_handle():
     month = month if len(f'{month}') >= 2 else f'0{month}'
     year = f'{datetime.now().year}'[-2:]
     date = f'{datetime.now().day}.{month}.{year}'
-    my_file = open("date.txt", "r")
+    my_file = open("date_discounts.txt", "r")
     dateTxt = my_file.read()
     my_file.close()
     if date == dateTxt:
         return
-    my_file = open("date.txt", "w")
+    my_file = open("date_discounts.txt", "w")
     my_file.write(f'{date}')
     my_file.close()
     try:

@@ -110,131 +110,45 @@ async def excel_handle():
     except:
         zhivaya = [f"='{previous_date}'!S2", f"='{previous_date}'!S3", f"='{previous_date}'!S8"]
 
-    try:
-        today_sheet.cell(row=2, column=4).value = aquamobil_aqua[0]
-        today_sheet.cell(row=3, column=4).value = aquamobil_aqua[1]
-    except:
-        today_sheet.cell(row=2, column=4).value = 0
-        today_sheet.cell(row=3, column=4).value = 0
-
-    try:
-        today_sheet.cell(row=2, column=5).value = aquamobil_arhiz[0]
-        today_sheet.cell(row=3, column=5).value = aquamobil_arhiz[1]
-    except:
-        today_sheet.cell(row=2, column=5).value = 0
-        today_sheet.cell(row=3, column=5).value = 0
-
-    try:
-        today_sheet.cell(row=2, column=6).value = aquamobil_artenza[0]
-        today_sheet.cell(row=3, column=6).value = aquamobil_artenza[1]
-    except:
-        today_sheet.cell(row=2, column=6).value = 0
-        today_sheet.cell(row=3, column=6).value = 0
-    
-    try:
-        today_sheet.cell(row=2, column=7).value = aquamobil_kukuzar[0]
-        today_sheet.cell(row=3, column=7).value = aquamobil_kukuzar[1]
-    except:
-        today_sheet.cell(row=2, column=7).value = 0
-        today_sheet.cell(row=3, column=7).value = 0
-
-    try:
-        today_sheet.cell(row=2, column=8).value = aquamobil_sosnovskaya[0]
-        today_sheet.cell(row=3, column=8).value = aquamobil_sosnovskaya[1]
-    except:
-        today_sheet.cell(row=2, column=8).value = 0
-        today_sheet.cell(row=3, column=8).value = 0
-
-    try:
-        today_sheet.cell(row=2, column=9).value = chebarkul[0]
-        today_sheet.cell(row=3, column=9).value = chebarkul[1]
-        today_sheet.cell(row=8, column=9).value = chebarkul[2]
-    except:
-        today_sheet.cell(row=2, column=9).value = 0
-        today_sheet.cell(row=3, column=9).value = 0
-        today_sheet.cell(row=8, column=9).value = 0
-
-    try:
-        today_sheet.cell(row=3, column=10).value = crystal[1]
-        today_sheet.cell(row=8, column=10).value = crystal[2]
-    except:
-        today_sheet.cell(row=3, column=10).value = 0
-        today_sheet.cell(row=8, column=10).value = 0
-
-    try:
-        today_sheet.cell(row=3, column=11).value = gorny[1]
-    except:
-        today_sheet.cell(row=3, column=11).value = 0
-
-    try:
-        today_sheet.cell(row=2, column=12).value = lubima[0]
-        today_sheet.cell(row=3, column=12).value = lubima[1]
-        today_sheet.cell(row=8, column=12).value = lubima[2]
-    except:
-        today_sheet.cell(row=2, column=12).value = 0
-        today_sheet.cell(row=3, column=12).value = 0
-        today_sheet.cell(row=8, column=12).value = 0
-
-    try:
-        today_sheet.cell(row=2, column=13).value = luxe[0]
-        today_sheet.cell(row=3, column=13).value = luxe[1]
-        today_sheet.cell(row=8, column=13).value = luxe[2]
-    except:
-        today_sheet.cell(row=2, column=13).value = 0
-        today_sheet.cell(row=3, column=13).value = 0
-        today_sheet.cell(row=8, column=13).value = 0       
-
-    try:
-        today_sheet.cell(row=2, column=14).value = luxe_luxik[0]
-        today_sheet.cell(row=3, column=14).value = luxe_luxik[1]
-        today_sheet.cell(row=8, column=14).value = luxe_luxik[2]
-    except:
-        today_sheet.cell(row=2, column=14).value = 0
-        today_sheet.cell(row=3, column=14).value = 0
-        today_sheet.cell(row=8, column=14).value = 0    
-
-    try:
-        today_sheet.cell(row=2, column=15).value = niagara[0]
-        today_sheet.cell(row=3, column=15).value = niagara[1]
-        today_sheet.cell(row=8, column=15).value = niagara[2]
-    except:
-        today_sheet.cell(row=2, column=15).value = 0
-        today_sheet.cell(row=3, column=15).value = 0
-        today_sheet.cell(row=8, column=15).value = 0        
-
-    try:
-        today_sheet.cell(row=2, column=16).value = niagara_premium[0]
-        today_sheet.cell(row=3, column=16).value = niagara_premium[1]
-        today_sheet.cell(row=8, column=16).value = niagara_premium[2]
-    except:
-        today_sheet.cell(row=2, column=16).value = 0
-        today_sheet.cell(row=3, column=16).value = 0
-        today_sheet.cell(row=8, column=16).value = 0
-
-    try:
-        today_sheet.cell(row=2, column=17).value = niagara_caucasus[0]
-        today_sheet.cell(row=3, column=17).value = niagara_caucasus[1]
-        today_sheet.cell(row=8, column=17).value = niagara_caucasus[2]
-    except:
-        today_sheet.cell(row=2, column=17).value = 0
-        today_sheet.cell(row=3, column=17).value = 0
-        today_sheet.cell(row=8, column=17).value = 0
-
-    try:
-        today_sheet.cell(row=2, column=18).value = vlasov[0]
-        today_sheet.cell(row=3, column=18).value = vlasov[1]
-    except:
-        today_sheet.cell(row=2, column=18).value = 0
-        today_sheet.cell(row=3, column=18).value = 0
-
-    try:
-        today_sheet.cell(row=2, column=19).value = zhivaya[0]
-        today_sheet.cell(row=3, column=19).value = zhivaya[1]
-        today_sheet.cell(row=8, column=19).value = zhivaya[2]
-    except:
-        today_sheet.cell(row=2, column=19).value = 0
-        today_sheet.cell(row=3, column=19).value = 0
-        today_sheet.cell(row=8, column=19).value = 0
+    today_sheet.cell(row=2, column=4).value = aquamobil_aqua[0]
+    today_sheet.cell(row=3, column=4).value = aquamobil_aqua[1]
+    today_sheet.cell(row=2, column=5).value = aquamobil_arhiz[0]
+    today_sheet.cell(row=3, column=5).value = aquamobil_arhiz[1]
+    today_sheet.cell(row=2, column=6).value = aquamobil_artenza[0]
+    today_sheet.cell(row=3, column=6).value = aquamobil_artenza[1]
+    today_sheet.cell(row=2, column=7).value = aquamobil_kukuzar[0]
+    today_sheet.cell(row=3, column=7).value = aquamobil_kukuzar[1]
+    today_sheet.cell(row=2, column=8).value = aquamobil_sosnovskaya[0]
+    today_sheet.cell(row=3, column=8).value = aquamobil_sosnovskaya[1]
+    today_sheet.cell(row=2, column=9).value = chebarkul[0]
+    today_sheet.cell(row=3, column=9).value = chebarkul[1]
+    today_sheet.cell(row=8, column=9).value = chebarkul[2]
+    today_sheet.cell(row=3, column=10).value = crystal[1]
+    today_sheet.cell(row=8, column=10).value = crystal[2]
+    today_sheet.cell(row=3, column=11).value = gorny[1]
+    today_sheet.cell(row=2, column=12).value = lubima[0]
+    today_sheet.cell(row=3, column=12).value = lubima[1]
+    today_sheet.cell(row=8, column=12).value = lubima[2]
+    today_sheet.cell(row=2, column=13).value = luxe[0]
+    today_sheet.cell(row=3, column=13).value = luxe[1]
+    today_sheet.cell(row=8, column=13).value = luxe[2]
+    today_sheet.cell(row=2, column=14).value = luxe_luxik[0]
+    today_sheet.cell(row=3, column=14).value = luxe_luxik[1]
+    today_sheet.cell(row=8, column=14).value = luxe_luxik[2]
+    today_sheet.cell(row=2, column=15).value = niagara[0]
+    today_sheet.cell(row=3, column=15).value = niagara[1]
+    today_sheet.cell(row=8, column=15).value = niagara[2]
+    today_sheet.cell(row=2, column=16).value = niagara_premium[0]
+    today_sheet.cell(row=3, column=16).value = niagara_premium[1]
+    today_sheet.cell(row=8, column=16).value = niagara_premium[2]
+    today_sheet.cell(row=2, column=17).value = niagara_caucasus[0]
+    today_sheet.cell(row=3, column=17).value = niagara_caucasus[1]
+    today_sheet.cell(row=8, column=17).value = niagara_caucasus[2]
+    today_sheet.cell(row=2, column=18).value = vlasov[0]
+    today_sheet.cell(row=3, column=18).value = vlasov[1]
+    today_sheet.cell(row=2, column=19).value = zhivaya[0]
+    today_sheet.cell(row=3, column=19).value = zhivaya[1]
+    today_sheet.cell(row=8, column=19).value = zhivaya[2]
 
     today_sheet.cell(row=6, column=2).value = f"=B3-'{previous_date}'!B3"
     today_sheet.cell(row=6, column=4).value = f"=D3-'{previous_date}'!D3"
@@ -255,5 +169,3 @@ async def excel_handle():
     today_sheet.cell(row=6, column=19).value = f"=S3-'{previous_date}'!S3"
 
     wb.save('analysis.xlsx')
-
-    print('LESSS GO')

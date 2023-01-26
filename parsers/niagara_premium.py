@@ -13,5 +13,6 @@ def parser():
     time.sleep(2)
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     box = int(soup.find('div', {'class': 'reverse-packing'}).find('div', {'class': 'field'}).find('div', {'class': 'price-col'}).find('div', {'class': 'price'}).find('span', {'class': 'value'}).text.strip()[0:3])
+    soup = BeautifulSoup(driver.page_source, 'html.parser')
     driver.close()
     return [single, double, box]
