@@ -4,7 +4,8 @@ import schedule
 import os
 import TOKEN
 from aiogram import Bot, Dispatcher, executor, types
-from aiogram.types import InputFile, InlineKeyboardMarkup, InlineKeyboardButton
+from defs.keyboards import keyboardFalse, keyboardTrue, yes_button, sumbit_buttons, choose_type_keyboard
+from defs.update_checker import update_check
 from utils.excel_handler import excel_handle
 from utils.graph_handler import graph_handle
 from utils.discounts_handler import discounts_handle
@@ -16,88 +17,7 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=TOKEN.TOKEN)
 dp = Dispatcher(bot)
 
-my_file = open("./info/update.txt", "r")
-update = my_file.read()
-my_file.close()
-
-async def check_update(change):
-    my_file = open("./info/update.txt", "r")
-    update = my_file.read()
-    my_file.close()
-    if change:
-        update = "True" if update == "False" else "False"
-        my_file = open("./info/update.txt", "w")
-        my_file.write(f'{update}')
-        my_file.close()
-    return update
-
-kbFalse = [
-    [
-        InlineKeyboardButton("Актуальный анализ", callback_data="analysis"),
-    ],
-    [
-        InlineKeyboardButton("Акции", callback_data="discounts"),
-    ],
-    [
-        InlineKeyboardButton('Вкл. автообновление✅', callback_data="auto_update")
-    ],
-    [
-        InlineKeyboardButton('Заменить Excel', callback_data="excel")
-    ]
-]
-
-keyboardFalse = InlineKeyboardMarkup(inline_keyboard=kbFalse)
-
-kbTrue = [
-    [
-        InlineKeyboardButton("Актуальный анализ", callback_data="analysis"),
-    ],
-    [
-        InlineKeyboardButton("Акции", callback_data="discounts"),
-    ],
-    [
-        InlineKeyboardButton('Выкл. автообновление🚫', callback_data="auto_update")
-    ],
-    [
-        InlineKeyboardButton('Заменить Excel', callback_data="excel")
-    ]
-]
-
-keyboardTrue = InlineKeyboardMarkup(inline_keyboard=kbTrue)
-
-yes = [
-    [
-        InlineKeyboardButton("Да", callback_data="yes"),
-    ],
-]
-
-yes_button = InlineKeyboardMarkup(inline_keyboard=yes)
-
-sumbit = [
-    [
-        InlineKeyboardButton("Да", callback_data="submit"),
-    ],
-    [
-        InlineKeyboardButton("Нет", callback_data="cancel"),
-    ]
-]
-
-sumbit_button = InlineKeyboardMarkup(inline_keyboard=sumbit)
-
-choose_type = [
-    [
-        InlineKeyboardButton("PDF", callback_data="pdf"),
-    ],
-    [
-        InlineKeyboardButton("Картинками", callback_data="pictures"),
-    ],
-    [
-        InlineKeyboardButton("Вернуться в меню", callback_data="menu"),
-    ]
-]
-
-choose_type_keyboard = InlineKeyboardMarkup(inline_keyboard=choose_type)
-
+update_check(False)
 
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
@@ -106,18 +26,18 @@ async def send_welcome(message: types.Message):
 
 @dp.message_handler()
 async def echo(message: types.Message):
-    update = await check_update(False)
+    update = await update_check(False)
     await message.answer("Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
 
 @dp.message_handler(content_types=['document'])
 async def process_document(message: types.Message):
     doc = message.document
     await doc.download(destination_file='./data/temp_analysis.xlsx')
-    await message.answer("Вы действительно хотите заменить Excel файл на сервере?", reply_markup=sumbit_button)
+    await message.answer("Вы действительно хотите заменить Excel файл на сервере?", reply_markup=sumbit_buttons)
 
 @dp.callback_query_handler()
 async def process_callback_button(callback_query: types.CallbackQuery):
-    update = await check_update(False)
+    update = await update_check(False)
     if callback_query.data == 'analysis':
         await callback_query.message.delete()
         await bot.send_message(callback_query.from_user.id, 'Сейчас подготовим для тебя актуальный анализ рынка!')
@@ -153,7 +73,7 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         pass
     elif callback_query.data == 'auto_update':
         await callback_query.message.delete()
-        update = await check_update(True)
+        update = await update_check(True)
         if update == "True":
             await bot.send_message(callback_query.from_user.id, "Автообновление включено!")
         else:
@@ -193,7 +113,7 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         pass
 
 async def job():
-    update = await check_update(False)
+    update = await update_check(False)
     if (update == "True"):
         await excel_handle()
         await graph_handle()
