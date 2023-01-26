@@ -116,7 +116,6 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         await callback_query.message.delete()
         await bot.send_message(callback_query.from_user.id, "Сейчас покажу цены!")
         await bot.send_message(callback_query.from_user.id, "Подождите...")
-        await excel_handle()
         prices = await prices_handle()
         await bot.send_message(callback_query.from_user.id, f"Актуальные цены на воду за 2 тары:\n    Аква-мобиль Аква = {prices[0]}\n    Аква-мобиль Архыз = {prices[1]}\n    Аква-мобиль Артенза = {prices[2]}\n    Аква-мобиль Кукузар = {prices[3]}\n    Аква-мобиль Сосновская = {prices[4]}\n    Чебаркульский исток = {prices[5]}\n    Кристальная = {prices[6]}\n    Горный Оазис = {prices[7]}\n    Любимая = {prices[8]}\n    Люкс Вода = {prices[9]}\n    Люкс Вода Люксик = {prices[10]}\n    Ниагара = {prices[11]}\n    Ниагара Премиум = {prices[12]}\n    Ниагара Премиум Кавказ = {prices[13]}\n    Власов Ключ = {prices[14]}\n    Живая = {prices[15]}")
         await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
