@@ -22,7 +22,7 @@ update_check(False)
 
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
-    await message.answer("Привет!\n Я бот, который покажет тебя самую актуальную информацию о рынке воды в Челябинске! \nХочешь получить сводку?", reply_markup=yes_button)
+    await message.answer("Привет!\nЯ бот, который покажет тебя самую актуальную информацию о рынке воды в Челябинске! \nХочешь получить сводку?", reply_markup=yes_button)
 
 
 @dp.message_handler()
@@ -88,7 +88,7 @@ async def process_callback_button(callback_query: types.CallbackQuery):
     elif callback_query.data == 'excel':
         await callback_query.message.delete()
         await bot.send_message(callback_query.from_user.id, "Отправьте Excel файл для замены на сервере")
-        await bot.send_message(callback_query.from_user.id, "Внимание❗\nДля корректной работы необходимы следующие условия:\n    1)Первая страница должна быть скопирована с предыдущего файла(необходимо такое же название и наличие таблицы в таким же форматированием)\n    2)Наличие хотя бы одной страницы с датами и таким же форматированием как в предыдущем файле\n    3)Файл должен называться 'analysis.xlsx'")
+        await bot.send_message(callback_query.from_user.id, "Внимание!\nДля корректной работы необходимы следующие условия:\n1)Первая страница должна быть скопирована с предыдущего файла(необходимо такое же название и наличие таблицы в таким же форматированием)\n2)Наличие хотя бы одной страницы с датами и таким же форматированием как в предыдущем файле\n3)Файл должен называться 'analysis.xlsx'")
         pass
     elif callback_query.data == 'submit':
         await callback_query.message.delete()
