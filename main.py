@@ -1,23 +1,19 @@
 import logging
+import time
+import schedule
+import os
+import TOKEN
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import InputFile, InlineKeyboardMarkup, InlineKeyboardButton
-import schedule
-import time
-import os
-
 from utils.excel_handler import excel_handle
 from utils.graph_handler import graph_handle
 from utils.discounts_handler import discounts_handle
 from utils.discounts_sender import discounts_send
 from utils.pdf_maker import pdf_make
 
-import TOKEN
-
-API_TOKEN = TOKEN.TOKEN
-
 logging.basicConfig(level=logging.INFO)
 
-bot = Bot(token=API_TOKEN)
+bot = Bot(token=TOKEN.TOKEN)
 dp = Dispatcher(bot)
 
 my_file = open("./info/update.txt", "r")
