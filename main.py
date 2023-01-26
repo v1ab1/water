@@ -22,13 +22,13 @@ update_check(False)
 
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
-    await message.answer("Привет, я бот, который покажет тебя самую актуальную информацию о рынке воды в Челябинске! \nХочешь получить сводку?", reply_markup=yes_button)
+    await message.answer("Привет!\n Я бот, который покажет тебя самую актуальную информацию о рынке воды в Челябинске! \nХочешь получить сводку?", reply_markup=yes_button)
 
 
 @dp.message_handler()
 async def echo(message: types.Message):
     update = await update_check(False)
-    await message.answer("Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
+    await message.answer("Выбери вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
 
 @dp.message_handler(content_types=['document'])
 async def process_document(message: types.Message):
@@ -47,7 +47,7 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         await graph_handle()
         await bot.send_document(callback_query.from_user.id, open('data/analysis.xlsx', 'rb'))
         await bot.send_message(callback_query.from_user.id, 'Готово! :)')
-        await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
+        await bot.send_message(callback_query.from_user.id, "Выбери вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
     elif callback_query.data == 'discounts':
         await callback_query.message.delete()
@@ -60,7 +60,7 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         await discounts_handle()
         await discounts_send(bot, callback_query)
         await bot.send_message(callback_query.from_user.id, 'Готово!...')
-        await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
+        await bot.send_message(callback_query.from_user.id, "Выбери вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
     elif callback_query.data == 'pdf':
         await callback_query.message.delete()
@@ -70,7 +70,7 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         await pdf_make()
         await bot.send_document(callback_query.from_user.id, open('./data/discounts.pdf', 'rb'))
         await bot.send_message(callback_query.from_user.id, 'Готово!...')
-        await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
+        await bot.send_message(callback_query.from_user.id, "Выбери вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
     elif callback_query.data == 'auto_update':
         await callback_query.message.delete()
@@ -79,16 +79,16 @@ async def process_callback_button(callback_query: types.CallbackQuery):
             await bot.send_message(callback_query.from_user.id, "Автообновление включено!")
         else:
             await bot.send_message(callback_query.from_user.id, "Автообновление выключено!")
-        await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
+        await bot.send_message(callback_query.from_user.id, "Выбери вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
     elif callback_query.data == 'yes':
         await callback_query.message.delete()
-        await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
+        await bot.send_message(callback_query.from_user.id, "Выбери вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
     elif callback_query.data == 'excel':
         await callback_query.message.delete()
         await bot.send_message(callback_query.from_user.id, "Отправьте Excel файл для замены на сервере")
-        await bot.send_message(callback_query.from_user.id, "Внимание!\nДля корректной работы необходимы следующие условия:\n1)Первая страница должна быть скопирована с предыдущего файла(необходимо такое же название и наличие таблицы в таким же форматированием)\n2)Наличие хотя бы одной страницы с датами и таким же форматированием как в предыдущем файле\n3)Файл должен называться 'analysis.xlsx'")
+        await bot.send_message(callback_query.from_user.id, "Внимание❗\nДля корректной работы необходимы следующие условия:\n    1)Первая страница должна быть скопирована с предыдущего файла(необходимо такое же название и наличие таблицы в таким же форматированием)\n    2)Наличие хотя бы одной страницы с датами и таким же форматированием как в предыдущем файле\n    3)Файл должен называться 'analysis.xlsx'")
         pass
     elif callback_query.data == 'submit':
         await callback_query.message.delete()
@@ -100,17 +100,17 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         os.rename('./data/temp_analysis.xlsx', './data/analysis.xlsx')
         await bot.send_message(callback_query.from_user.id, "Файл заменен")
         await bot.send_message(callback_query.from_user.id, "Готово!")
-        await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
+        await bot.send_message(callback_query.from_user.id, "Выбери вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
     elif callback_query.data == 'cancel':
         await callback_query.message.delete()
         os.remove('./data/temp_analysis.xlsx')
         await bot.send_message(callback_query.from_user.id, "Действие отменено")
-        await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
+        await bot.send_message(callback_query.from_user.id, "Выбери вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
     elif callback_query.data == 'menu':
         await callback_query.message.delete()
-        await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
+        await bot.send_message(callback_query.from_user.id, "Выбери вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
     elif callback_query.data == 'prices':
         await callback_query.message.delete()
@@ -118,7 +118,7 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         await bot.send_message(callback_query.from_user.id, "Подождите...")
         prices = await prices_handle()
         await bot.send_message(callback_query.from_user.id, f"Актуальные цены на воду за 2 тары:\n    Аква-мобиль Аква = {prices[0]}\n    Аква-мобиль Архыз = {prices[1]}\n    Аква-мобиль Артенза = {prices[2]}\n    Аква-мобиль Кукузар = {prices[3]}\n    Аква-мобиль Сосновская = {prices[4]}\n    Чебаркульский исток = {prices[5]}\n    Кристальная = {prices[6]}\n    Горный Оазис = {prices[7]}\n    Любимая = {prices[8]}\n    Люкс Вода = {prices[9]}\n    Люкс Вода Люксик = {prices[10]}\n    Ниагара = {prices[11]}\n    Ниагара Премиум = {prices[12]}\n    Ниагара Премиум Кавказ = {prices[13]}\n    Власов Ключ = {prices[14]}\n    Живая = {prices[15]}")
-        await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
+        await bot.send_message(callback_query.from_user.id, "Выбери вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
 
 async def job():
