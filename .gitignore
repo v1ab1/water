@@ -1,2 +1,7 @@
 *.log
 TOKEN.py
+__pycache__
+./utils/__pycache__
+./parsers/__pycache__
+./discounts_parsers/__pycache__
+./defs/__pycache__

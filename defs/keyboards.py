@@ -2,16 +2,19 @@ from aiogram.types import InputFile, InlineKeyboardMarkup, InlineKeyboardButton
 
 kbFalse = [
     [
-        InlineKeyboardButton("Актуальный анализ", callback_data="analysis"),
+        InlineKeyboardButton("Актуальный анализ📈", callback_data="analysis"),
     ],
     [
-        InlineKeyboardButton("Акции", callback_data="discounts"),
+        InlineKeyboardButton("Акции💲", callback_data="discounts"),
+    ],
+    [
+        InlineKeyboardButton("Показать цены💸", callback_data="prices"),
     ],
     [
         InlineKeyboardButton('Вкл. автообновление✅', callback_data="auto_update")
     ],
     [
-        InlineKeyboardButton('Заменить Excel', callback_data="excel")
+        InlineKeyboardButton('Заменить Excel📚', callback_data="excel")
     ]
 ]
 
@@ -19,16 +22,19 @@ keyboardFalse = InlineKeyboardMarkup(inline_keyboard=kbFalse)
 
 kbTrue = [
     [
-        InlineKeyboardButton("Актуальный анализ", callback_data="analysis"),
+        InlineKeyboardButton("Актуальный анализ📈", callback_data="analysis"),
     ],
     [
-        InlineKeyboardButton("Акции", callback_data="discounts"),
+        InlineKeyboardButton("Акции💲", callback_data="discounts"),
+    ],
+    [
+        InlineKeyboardButton("Показать цены💸", callback_data="prices"),
     ],
     [
         InlineKeyboardButton('Выкл. автообновление🚫', callback_data="auto_update")
     ],
     [
-        InlineKeyboardButton('Заменить Excel', callback_data="excel")
+        InlineKeyboardButton('Заменить Excel📚', callback_data="excel")
     ]
 ]
 
@@ -36,7 +42,7 @@ keyboardTrue = InlineKeyboardMarkup(inline_keyboard=kbTrue)
 
 yes = [
     [
-        InlineKeyboardButton("Да", callback_data="yes"),
+        InlineKeyboardButton("Да✅", callback_data="yes"),
     ],
 ]
 
@@ -44,10 +50,10 @@ yes_button = InlineKeyboardMarkup(inline_keyboard=yes)
 
 sumbit = [
     [
-        InlineKeyboardButton("Да", callback_data="submit"),
+        InlineKeyboardButton("Да✅", callback_data="submit"),
     ],
     [
-        InlineKeyboardButton("Нет", callback_data="cancel"),
+        InlineKeyboardButton("Нет🚫", callback_data="cancel"),
     ]
 ]
 
@@ -55,13 +61,13 @@ sumbit_buttons = InlineKeyboardMarkup(inline_keyboard=sumbit)
 
 choose_type = [
     [
-        InlineKeyboardButton("PDF", callback_data="pdf"),
+        InlineKeyboardButton("PDF📗", callback_data="pdf"),
     ],
     [
-        InlineKeyboardButton("Картинками", callback_data="pictures"),
+        InlineKeyboardButton("Картинками🖼", callback_data="pictures"),
     ],
     [
-        InlineKeyboardButton("Вернуться в меню", callback_data="menu"),
+        InlineKeyboardButton("🔙Вернуться в меню", callback_data="menu"),
     ]
 ]
 
