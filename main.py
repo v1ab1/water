@@ -5,30 +5,32 @@ import schedule
 import time
 import os
 
-from excel_handler import excel_handle
-from graph_handler import graph_handle
-from discounts_handler import discounts_handle
-from discounts_sender import discounts_send
-from pdf_maker import pdf_make
+from utils.excel_handler import excel_handle
+from utils.graph_handler import graph_handle
+from utils.discounts_handler import discounts_handle
+from utils.discounts_sender import discounts_send
+from utils.pdf_maker import pdf_make
 
-API_TOKEN = ''
+import TOKEN
+
+API_TOKEN = TOKEN.TOKEN
 
 logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
-my_file = open("update.txt", "r")
+my_file = open("./info/update.txt", "r")
 update = my_file.read()
 my_file.close()
 
 async def check_update(change):
-    my_file = open("update.txt", "r")
+    my_file = open("./info/update.txt", "r")
     update = my_file.read()
     my_file.close()
     if change:
         update = "True" if update == "False" else "False"
-        my_file = open("update.txt", "w")
+        my_file = open("./info/update.txt", "w")
         my_file.write(f'{update}')
         my_file.close()
     return update
@@ -114,7 +116,7 @@ async def echo(message: types.Message):
 @dp.message_handler(content_types=['document'])
 async def process_document(message: types.Message):
     doc = message.document
-    await doc.download(destination_file='./temp_analysis.xlsx')
+    await doc.download(destination_file='./data/temp_analysis.xlsx')
     await message.answer("Вы действительно хотите заменить Excel файл на сервере?", reply_markup=sumbit_button)
 
 @dp.callback_query_handler()
@@ -126,7 +128,7 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         await bot.send_message(callback_query.from_user.id, 'Подождите...')
         await excel_handle()
         await graph_handle()
-        await bot.send_document(callback_query.from_user.id, open('analysis.xlsx', 'rb'))
+        await bot.send_document(callback_query.from_user.id, open('data/analysis.xlsx', 'rb'))
         await bot.send_message(callback_query.from_user.id, 'Готово! :)')
         await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
@@ -149,17 +151,17 @@ async def process_callback_button(callback_query: types.CallbackQuery):
         await bot.send_message(callback_query.from_user.id, 'Подождите...')
         await discounts_handle()
         await pdf_make()
-        await bot.send_document(callback_query.from_user.id, open('discounts.pdf', 'rb'))
+        await bot.send_document(callback_query.from_user.id, open('./data/discounts.pdf', 'rb'))
         await bot.send_message(callback_query.from_user.id, 'Готово!...')
         await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
     elif callback_query.data == 'auto_update':
         await callback_query.message.delete()
+        update = await check_update(True)
         if update == "True":
             await bot.send_message(callback_query.from_user.id, "Автообновление включено!")
         else:
             await bot.send_message(callback_query.from_user.id, "Автообновление выключено!")
-        update = await check_update(True)
         await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
     elif callback_query.data == 'yes':
@@ -174,18 +176,18 @@ async def process_callback_button(callback_query: types.CallbackQuery):
     elif callback_query.data == 'submit':
         await callback_query.message.delete()
         try:
-            os.remove('old_analysis.xlsx')
+            os.remove('./data/old_analysis.xlsx')
         except:
             pass
-        os.rename('analysis.xlsx', 'old_analysis.xlsx')
-        os.rename('temp_analysis.xlsx', 'analysis.xlsx')
+        os.rename('./data/analysis.xlsx', './data/old_analysis.xlsx')
+        os.rename('./data/temp_analysis.xlsx', './data/analysis.xlsx')
         await bot.send_message(callback_query.from_user.id, "Файл заменен")
         await bot.send_message(callback_query.from_user.id, "Готово!")
         await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass
     elif callback_query.data == 'cancel':
         await callback_query.message.delete()
-        os.remove('temp_analysis.xlsx')
+        os.remove('./data/temp_analysis.xlsx')
         await bot.send_message(callback_query.from_user.id, "Действие отменено")
         await bot.send_message(callback_query.from_user.id, "Выберите вариант!", reply_markup=keyboardTrue if update == "True" else keyboardFalse)
         pass

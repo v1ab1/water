@@ -18,7 +18,7 @@ from parsers.vlasov import parser as vlasov_def
 from parsers.zhivaya import parser as zhivaya_def
 
 async def excel_handle():
-    wb = openpyxl.load_workbook('analysis.xlsx')
+    wb = openpyxl.load_workbook('./data/analysis.xlsx')
     month = datetime.now().month
     month = month if len(f'{month}') >= 2 else f'0{month}'
     year = f'{datetime.now().year}'[-2:]
@@ -168,4 +168,4 @@ async def excel_handle():
     today_sheet.cell(row=6, column=18).value = f"=R3-'{previous_date}'!R3"
     today_sheet.cell(row=6, column=19).value = f"=S3-'{previous_date}'!S3"
 
-    wb.save('analysis.xlsx')
+    wb.save('./data/analysis.xlsx')

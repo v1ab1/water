@@ -7,25 +7,25 @@ async def graph_handle():
     year = f'{datetime.now().year}'[-2:]
     date = f'{datetime.now().day}.{month}.{year}'
 
-    my_file = open("date_graph.txt", "r")
+    my_file = open("./info/date_graph.txt", "r")
     dateTxt = my_file.read()
     my_file.close()
     if date == dateTxt:
         return
     
-    my_file = open("date_graph.txt", "w")
+    my_file = open("./info/date_graph.txt", "w")
     my_file.write(f'{date}')
     my_file.close()
 
-    my_file = open("index.txt", "r")
+    my_file = open("./info/index.txt", "r")
     index = int(my_file.read())
     my_file.close()
     index = index + 1
-    my_file = open("index.txt", "w")
+    my_file = open("./info/index.txt", "w")
     my_file.write(f'{index}')
     my_file.close()
 
-    wb = openpyxl.load_workbook('analysis.xlsx')
+    wb = openpyxl.load_workbook('./data/analysis.xlsx')
     sheet = wb.worksheets[0]
     sheet.cell(row=index, column=1).value = date
     sheet.cell(row=index, column=2).value = f"='{date}'!D3"
@@ -44,4 +44,4 @@ async def graph_handle():
     sheet.cell(row=index, column=15).value = f"='{date}'!Q3"
     sheet.cell(row=index, column=16).value = f"='{date}'!R3"
     sheet.cell(row=index, column=17).value = f"='{date}'!S3"
-    wb.save('analysis.xlsx')
+    wb.save('./data/analysis.xlsx')

@@ -9,12 +9,12 @@ async def pdf_make():
     month = month if len(f'{month}') >= 2 else f'0{month}'
     year = f'{datetime.now().year}'[-2:]
     date = f'{datetime.now().day}.{month}.{year}'
-    my_file = open("date_pdf.txt", "r")
+    my_file = open("./info/date_pdf.txt", "r")
     dateTxt = my_file.read()
     my_file.close()
     if date == dateTxt:
         return
-    my_file = open("date_pdf.txt", "w")
+    my_file = open("./info/date_pdf.txt", "w")
     my_file.write(f'{date}')
     my_file.close()
     def change_heading(heading):
@@ -96,5 +96,5 @@ async def pdf_make():
             heading = document.add_heading('Живая', level=1)
             change_heading(heading)
         document.add_picture(image_path, width=Inches(6))
-    document.save("discounts.docx")
-    convert("discounts.docx", "discounts.pdf")
+    document.save("./data/discounts.docx")
+    convert("./data/discounts.docx", "./data/discounts.pdf")
