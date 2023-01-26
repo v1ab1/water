@@ -2,10 +2,10 @@ from aiogram.types import InputFile, InlineKeyboardMarkup, InlineKeyboardButton
 
 kbFalse = [
     [
-        InlineKeyboardButton("Актуальный анализ📈", callback_data="analysis"),
+        InlineKeyboardButton("Актуальный анализ📊", callback_data="analysis"),
     ],
     [
-        InlineKeyboardButton("Акции💲", callback_data="discounts"),
+        InlineKeyboardButton("Акции📈", callback_data="discounts"),
     ],
     [
         InlineKeyboardButton("Показать цены💸", callback_data="prices"),
@@ -22,10 +22,10 @@ keyboardFalse = InlineKeyboardMarkup(inline_keyboard=kbFalse)
 
 kbTrue = [
     [
-        InlineKeyboardButton("Актуальный анализ📈", callback_data="analysis"),
+        InlineKeyboardButton("Актуальный анализ📊", callback_data="analysis"),
     ],
     [
-        InlineKeyboardButton("Акции💲", callback_data="discounts"),
+        InlineKeyboardButton("Акции📈", callback_data="discounts"),
     ],
     [
         InlineKeyboardButton("Показать цены💸", callback_data="prices"),
